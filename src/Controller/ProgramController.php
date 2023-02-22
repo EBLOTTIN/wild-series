@@ -4,6 +4,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProgramRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -21,8 +22,12 @@ class ProgramController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function list(int $page = 1): Response
+    public function index(ProgramRepository $programRepository): Response
     {
+
+        $programs = $programRepository->findAll();
+        dump($programs);
+        die();
         return $this->render(
             'program/index.html.twig',
             [
@@ -34,8 +39,10 @@ class ProgramController extends AbstractController
     /**
      * @Route("/{id}", methods={"GET"}, name="show")
      */
-    public function show($id): Response
+    public function show(int $id, ProgramRepository $programRepository): Response
     {
+        // $program = $programRepository->findOneBy(['id' => $id]);
+
         return $this->render(
             'program/show.html.twig',
             [
