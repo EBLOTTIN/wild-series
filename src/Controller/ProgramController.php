@@ -4,7 +4,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Program;
+
 use App\Repository\ProgramRepository;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -24,15 +27,10 @@ class ProgramController extends AbstractController
      */
     public function index(ProgramRepository $programRepository): Response
     {
-
         $programs = $programRepository->findAll();
-        dump($programs);
-        die();
         return $this->render(
             'program/index.html.twig',
-            [
-                'website' => 'Wild Series',
-            ]
+            ['programs' => $programs]
 
         );
     }
@@ -41,12 +39,18 @@ class ProgramController extends AbstractController
      */
     public function show(int $id, ProgramRepository $programRepository): Response
     {
-        // $program = $programRepository->findOneBy(['id' => $id]);
+        $program = $programRepository->findOneBy(['id' => $id]);
+
+        if (!$program) {
+            throw $this->createNotFoundException(
+                'No program with id : ' . $id . 'found in program\'s table'
+            );
+        }
 
         return $this->render(
             'program/show.html.twig',
             [
-                'id' => "4",
+                'program' => $program,
             ]
         );
     }
