@@ -6,9 +6,13 @@
 	<div class="media">
 		<div class="media-body">
 			<h1 class="mt-0">{{ category.name }}</h1>
+			{% for program in programs %}
+				<p>
+					{{ program.id }}
+					{{ program.title }}
+					{{ program.synopsis }}
+				</p>
+			{% endfor %}
 		</div>
 	</div>
-	<a href="{{ path('category_index') }}">
-		Retour à la liste des catégories
-	</a>
 {% endblock %}
