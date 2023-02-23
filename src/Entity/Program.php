@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ProgramRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\OrderBy;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 class Program
@@ -23,9 +25,10 @@ class Program
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;
 
-    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'program')]
     private ?Category $category = null;
+
 
     public function getId(): ?int
     {
