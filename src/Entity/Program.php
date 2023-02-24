@@ -7,10 +7,16 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\OrderBy;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 class Program
 {
+
+    #[ORM\OneToMany(mappedBy: 'program', targetEntity: Saison::class)]
+    private $saisons;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,9 +32,14 @@ class Program
     private ?string $poster = null;
 
     #[ORM\JoinColumn(nullable: false)]
-    #[ORM\ManyToOne(inversedBy: 'program')]
+    #[ORM\ManyToOne(inversedBy: 'programs')]
     private ?Category $category = null;
 
+
+    public function __construct()
+    {
+        $this->saisons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -80,6 +91,31 @@ class Program
     {
         $this->category = $category;
 
+        return $this;
+    }
+
+    public function getSaison(): Collection
+    {
+        return $this->saisons;
+    }
+
+    public function addSaison(Saison $saison): self
+    {
+        if (!$this->saisons->contains($saison)) {
+            $this->saisons->add($saison);
+            $saison->setProgram($this);
+        }
+        return $this;
+    }
+
+    public function removeProgram(Program $saison): self
+    {
+        if ($this->saisons->removeElement($saison)) {
+            // set the owning side to null (unless already changed)
+            if ($saison->getCategory() === $this) {
+                $saison->setCategory(null);
+            }
+        }
         return $this;
     }
 }
