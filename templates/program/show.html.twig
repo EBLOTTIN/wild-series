@@ -13,9 +13,19 @@
 			<p>{{ program.synopsis }}</p>
 			<p>Catégorie :
 				{{ program.category.name }}</p>
-		</div>
+			<p>Saisons :
+				{% for saison in program.seasons %}
+					<p>Le numéro de la saison :
+						{{ saison.number }}</p>
+					<p>Le nom de la saison :
+						{{ saison.title }}</p>
+					<p>Description de la saison :
+						{{ saison.description }}</p>
+				{% endfor %}
+			</p>
+		</p>
 	</div>
-	<a href="{{ path('program_index') }}">
-		Retour à la liste des programmes
-	</a>
-{% endblock %}
+</div>
+<a href="{{ path('program_index') }}">
+	Retour à la liste des programmes
+</a>{% endblock %}
