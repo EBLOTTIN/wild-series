@@ -6,12 +6,12 @@ use App\Entity\Category;
 
 use App\Entity\Program;
 
-use App\form\CategoryType;
+use App\Form\CategoryType;
 
 use App\Repository\CategoryRepository;
 
 use App\Repository\ProgramRepository;
-
+use Doctrine\Common\Annotations\Annotation\Required;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -41,11 +41,17 @@ class CategoryController extends AbstractController
     /**
      * @Route("/new", name="new")
      */
-    public function new(): Response
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $category = new Category();
 
         $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $categoryRepository->save($category, true);
+        }
 
         return $this->render(
             'category/new.html.twig',
