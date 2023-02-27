@@ -10,6 +10,15 @@
 		<img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
 		<div class="media-body">
 			<h1 class="mt-0">Les informations sur les saisons et les épisodes</h1>
+			{% for no in season.no %}
+				<ul>
+					{{ no.number }}
+					.
+					{{ no.title }}
+					{{ no.synopsis }}
+				</ul>
+			{% endfor %}
 		</div>
 	</div>
+
 {% endblock %}
