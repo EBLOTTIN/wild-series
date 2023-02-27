@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<h1>Ajout d'une série :
+	</h1>
+	{{ form_start(form) }}
+	<button type="button">Add a program</button>
+	{{ form_end(form) }}
+	<a href="{{ path("program_index") }}">Voir les séries</a>
+{% endblock %}
