@@ -26,7 +26,7 @@ class Saison
     private ?string $description = null;
 
     #[ORM\JoinColumn(nullable: false)]
-    #[ORM\ManyToOne(inversedBy: 'program')]
+    #[ORM\ManyToOne(inversedBy: 'saisons')]
     private ?Program $program = null;
 
     #[ORM\OneToMany(mappedBy: 'saison', targetEntity: Episode::class)]
