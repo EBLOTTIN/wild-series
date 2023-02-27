@@ -9,7 +9,7 @@ use App\Entity\Program;
 use App\Entity\Saison;
 use App\Repository\EpisodeRepository;
 use App\Repository\ProgramRepository;
-use App\Repository\SeasonRepository;
+use App\Repository\SaisonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
