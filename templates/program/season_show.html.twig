@@ -17,6 +17,7 @@
 					{{ no.title }}
 					{{ no.synopsis }}
 				</ul>
+				<a href={{path("episode_show", {"program_id":program.id, "saison_id":season.id, "episode_id": no.id} )}}>Informations Episode</a>
 			{% endfor %}
 		</div>
 	</div>

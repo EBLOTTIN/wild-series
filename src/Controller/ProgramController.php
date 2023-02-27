@@ -4,6 +4,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Saison;
 use App\Repository\EpisodeRepository;
@@ -61,6 +62,26 @@ class ProgramController extends AbstractController
             [
                 'program' => $program,
                 'season' => $season,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/{program_id}/season/{season_id}/episode/{episode_id}", methods={"GET"}, name="episode_show")
+     * @Entity("program", options={"mapping": {"program_id": "id"}})
+     * @Entity("season", options={"mapping": {"season_id": "id"}})
+     * @Entity("episode", options={"mapping": {"episode_id": "id"}})
+     */
+
+    public function showEpisode(Program $program, Saison $season, Episode $episode)
+    {
+
+        return $this->render(
+            'program/episode_show.html.twig',
+            [
+                'program' => $program,
+                'season' => $season,
+                'episode' => $episode,
             ]
         );
     }
