@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Informations sur l'épisode
+	{{ episode.id }}
+{% endblock %}
+
+
+{% block body %}
+	<div class="media">
+		<img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+		<div class="media-body">
+			<h1>
+				Titre de la série :
+				{{ program.title }}
+			</h1>
+			<p>
+				Numéro de la saison :
+				{{ season.number }}
+
+			</p>
+			<p>Episode numéro :
+				{{ episode.number }}
+			</p>
+			<p>
+				Titre de l'épisode :
+				{{ episode.title }}
+			</p>
+			<p>
+				Synopsis de l'épisode :
+				{{ episode.synopsis }}
+
+			</p>
+
+		</div>
+	</div>
+{% endblock %}
