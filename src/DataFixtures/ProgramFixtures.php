@@ -35,6 +35,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         $program->setSynopsis('Geralt de Riv, un chasseur de monstres mutant, poursuit son destin dans un monde chaotique où les humains se révèlent souvent plus vicieux que les bêtes.');
         $program->setCategory($this->getReference('category_Action'));
         $manager->persist($program);
+        $this->addReference('program_TheWitcher', $program);
         $manager->flush();
 
         $program = new Program();

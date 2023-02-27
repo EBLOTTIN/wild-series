@@ -94,7 +94,7 @@ class Program
         return $this;
     }
 
-    public function getSaison(): Collection
+    public function getSaisons(): Collection
     {
         return $this->saisons;
     }

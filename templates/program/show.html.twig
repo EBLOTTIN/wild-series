@@ -14,13 +14,14 @@
 			<p>Catégorie :
 				{{ program.category.name }}</p>
 			<p>Saisons :
-				{% for saison in program.seasons %}
-					<p>Le numéro de la saison :
+				{% for saison in program.saisons %}
+					<p>Saison :
 						{{ saison.number }}</p>
-					<p>Le nom de la saison :
-						{{ saison.title }}</p>
-					<p>Description de la saison :
+					<p>Description de la saison
+						{{ saison.number }}:
 						{{ saison.description }}</p>
+					<a href="{{ path("program_season_show", {programId: program.id, seasonId: saison.id})}}">Voir les informations sur la saison</a>
+
 				{% endfor %}
 			</p>
 		</p>

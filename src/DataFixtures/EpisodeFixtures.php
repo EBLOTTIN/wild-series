@@ -27,6 +27,13 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
         $episode->setSaison($this->getReference('saison1_walkingDead'));
         $manager->persist($episode);
         $manager->flush();
+
+        $episode = new episode();
+        $episode->setTitle('Le début de la fin');
+        $episode->setNumber('1');
+        $episode->setSaison($this->getReference('saison1_TheWitcher'));
+        $manager->persist($episode);
+        $manager->flush();
     }
 
     public function getDependencies()

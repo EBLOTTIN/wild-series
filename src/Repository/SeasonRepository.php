@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Saison[]    findAll()
  * @method Saison[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EpisodeRepository extends ServiceEntityRepository
+class SeasonRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -5,7 +5,7 @@
 namespace App\Controller;
 
 use App\Entity\Program;
-
+use App\Repository\EpisodeRepository;
 use App\Repository\ProgramRepository;
 
 use App\Repository\SeasonRepository;
@@ -57,19 +57,19 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{porgramId}/seasons/{seasonId}", methods={"GET}, name="program_season_show")
+     * @Route("/{programId}/season/{seasonId}", methods={"GET"}, name="season_show")
      */
 
-    public function showSeason(int $programId, int $seasonId, ProgramRepository $programRepository, SeasonRepository $seasonRepository)
+    public function showSeason(int $programId, int $seasonId, ProgramRepository $programRepository, SeasonRepository $seasonRepository, EpisodeRepository $episodeRepository)
     {
-        $programId = $programRepository->findOneBy(['id' => $programId]);
-        $seasonId = $seasonRepository->findOneBy(['id' => $seasonId]);
+        $program = $programRepository->findOneBy(['id' => $programId]);
+        $season = $seasonRepository->findOneBy(['id' => $seasonId]);
 
         return $this->render(
             'program/season_show.html.twig',
             [
-                'pogramId' => $programId,
-                'seasonId' => $seasonId,
+                'program' => $program,
+                'season' => $season,
             ]
         );
     }
