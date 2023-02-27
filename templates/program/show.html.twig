@@ -20,7 +20,7 @@
 					<p>Description de la saison
 						{{ saison.number }}:
 						{{ saison.description }}</p>
-					<a href="{{ path("program_season_show", {programId: program.id, seasonId: saison.id})}}">Voir les informations sur la saison</a>
+					<a href="{{ path("program_season_show", {"program_id": program.id, "season_id": saison.id})}}">Voir les informations sur la saison</a>
 
 				{% endfor %}
 			</p>
